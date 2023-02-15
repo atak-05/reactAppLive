@@ -5,7 +5,7 @@ import { VscAccount } from "react-icons/vsc";
 class User extends Component {
   state = {
     isVisible: false,
-  }
+  };
   //prop-types burada da static olarak tanımlayabiliriz.
   static defaultProps = {
     name: "Bilgi Yok",
@@ -18,6 +18,16 @@ class User extends Component {
   //     isVisible: false,
   //   };
   // }
+  //*arrow func.kullanmassak bu şekilde de bind() edebiliriz!
+  // constructor(props) {
+  //   super(props);
+  //   this.onClickEvent = this.onClickEvent.bind(this);
+  // }
+  //*arrow function şeklindeyazarsak bind işlemi direk kendisi yapıyor..
+  //*Kendi gönderdiğimiz değerler ilk olarak yazılıyor sonra event(e) yazılıyor!
+  onClickEvent = (number, e) => {
+    this.setState({ isVisible: !this.state.isVisible });
+  };
 
   render() {
     //destructuring Assigment
@@ -27,7 +37,10 @@ class User extends Component {
     return (
       <div className="col-md-8 mb-4">
         <div className="card">
-          <div className="card-header d-flex justify-content-between">
+          <div
+            className="card-header d-flex justify-content-between"
+            onClick={this.onClickEvent.bind(this, 34)}
+          >
             <h4 className="d-inline">{name}</h4>
             <VscAccount style={{ cursor: "pointer" }} />
           </div>
